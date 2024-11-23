@@ -1,11 +1,9 @@
-from datetime import datetime
 import torch
 import torch.nn as nn
 from torch.ao.nn.quantized import Dropout
 from torch.optim import Adam
 import sqlite3
 from torch.utils.data import Dataset, DataLoader, random_split
-import time
 from tqdm import tqdm
 import warnings
 warnings.filterwarnings("ignore")
@@ -85,13 +83,12 @@ class DB_connect:
         # print(len(tensor))
         return tensor
 
-
     def __len__(self):
         return len(self.ids)
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+# print(device)
 dataset = DB_connect()
 model = Perceptron(input_neurons, hiden_layers_num).to(device)
 torch.save(model.state_dict(), r"C:\Users\student.CLUMBA.001\PycharmProjects\pythonProject\MAP_V1.7.pt")
@@ -104,9 +101,12 @@ val_loader = DataLoader(val_data, batch_size=1, shuffle=False, num_workers=1)
 
 
 def use_neuro(command1, command2, date, model):
+
     tensor_com1 = dataset.text_to_tensor(command1, 50)
     tensor_com2 = dataset.text_to_tensor(command2, 50)
-    day, month, year = date.split(".")
+    date = str(date)
+    year, month, day = date.split("-")
+
     for i in tensor_com2:
         tensor_com1.append(i)
     tensor_com1.append(int(day))
@@ -117,6 +117,7 @@ def use_neuro(command1, command2, date, model):
     winner = command1
     if results[1] > results[0]:
         winner = command2
+
     return round(results[0], 2) * 100, round(results[1], 2) * 100, winner
 
 loss = nn.MSELoss(reduction="sum")
@@ -126,8 +127,8 @@ opt = Adam(params=model.parameters(), lr=lr)
 if mode == "use" and PATH:
     model.load_state_dict(torch.load(PATH, weights_only=True))
     model.eval()
-    print(use_neuro(input("Введите название первой комманды: "), input("Введите название второй комманды: "),
-                            input("Введите дату проведения матча(дд.мм.гггг): "), model))
+    # print(use_neuro(input("Введите название первой комманды: "), input("Введите название второй комманды: "),
+    #                         input("Введите дату проведения матча(дд.мм.гггг): "), model))
 elif mode == "learn":
     path = r"C:\Users\student.CLUMBA.001\PycharmProjects\pythonProject\MAP_V1.8.pt"
     torch.save(model.state_dict(), path)
