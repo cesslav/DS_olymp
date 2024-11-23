@@ -14,7 +14,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
     <x>0</x>
     <y>0</y>
     <width>332</width>
-    <height>542</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -118,7 +118,7 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLabel" name="reasultteam">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>330</y>
       <width>271</width>
       <height>16</height>
@@ -166,17 +166,18 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>380</y>
-      <width>129</width>
-      <height>16</height>
+      <x>80</x>
+      <y>370</y>
+      <width>171</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(225, 96, 54);
+border-radius: 20px;</string>
     </property>
     <property name="text">
-     <string>Пока нет результатов</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Пока нет результатов&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -219,7 +220,6 @@ template = """<?xml version="1.0" encoding="UTF-8"?>
  <resources/>
  <connections/>
 </ui>
-
 """
 
 onewindow = """<?xml version="1.0" encoding="UTF-8"?>
