@@ -15,7 +15,7 @@ lr = 0.001
 proportion = 0.995
 n_epochs = 40
 save_every = 1
-PATH = r"C:\Users\student.CLUMBA.001\PycharmProjects\pythonProject\MAP_V1.7.pt"  # f"/home/ceslav/PycharmProjects/BFT_test/model/Translator11:06:58"
+PATH = r"C:\Users\student.CLUMBA.013\PycharmProjects\pythonProject\MAP_V1.8.pt"  # f"/home/ceslav/PycharmProjects/BFT_test/model/Translator11:06:58"
 mode = "use"  # learn or use
 
 
@@ -91,7 +91,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # print(device)
 dataset = DB_connect()
 model = Perceptron(input_neurons, hiden_layers_num).to(device)
-torch.save(model.state_dict(), r"C:\Users\student.CLUMBA.001\PycharmProjects\pythonProject\MAP_V1.7.pt")
+torch.save(model.state_dict(), r"C:\Users\student.CLUMBA.013\PycharmProjects\pythonProject\MAP_V1.8.pt")
 model.share_memory()
 train_data, val_data = random_split(dataset, [0.5, 0.5])
 
